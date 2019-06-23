@@ -11,7 +11,8 @@ def find_n(string, n_times):
 
 class Day1:
     """https://adventofcode.com/2018/day/1"""
-    def __init__(self, filename="2018_1.txt", starting_point=0, run=False):
+    def __init__(self, filename="input/2018_1.txt", run=False,
+                 starting_point=0):
         self.filename = filename
         self.starting_point = starting_point
 
@@ -51,7 +52,7 @@ class Day1:
 
 class Day2:
     """https://adventofcode.com/2018/day/2"""
-    def __init__(self, filename="2018_2.txt", run=False):
+    def __init__(self, filename="input/2018_2.txt", run=False):
         self.filename = filename
 
         if run:
@@ -94,7 +95,7 @@ class Day2:
 
 class Day3:
     """https://adventofcode.com/2018/day/3"""
-    def __init__(self, filename="2018_3.txt", size=1000, run=False):
+    def __init__(self, filename="input/2018_3.txt", run=False, size=1000):
         self.filename = filename
         self.square = matrix([[0]*size]*size)
 
@@ -157,7 +158,7 @@ class Day3:
 
 class Day4:
     """https://adventofcode.com/2018/day/4"""
-    def __init__(self, filename="2018_4.txt", run=False):
+    def __init__(self, filename="input/2018_4.txt", run=False):
         self.filename = filename
 
         if run:
@@ -273,7 +274,7 @@ class Day4:
 
 class Day5:
     """https://adventofcode.com/2018/day/5"""
-    def __init__(self, filename="2018_5.txt", run=False):
+    def __init__(self, filename="input/2018_5.txt", run=False):
         self.filename = filename
 
         if run:
@@ -340,7 +341,8 @@ class Day5:
 
 class Day6:
     """https://adventofcode.com/2018/day/6"""
-    def __init__(self, filename="2018_6.txt", distance=10000, run=False):
+    def __init__(self, filename="input/2018_6.txt", run=False,
+                 distance=10000):
         self.filename = filename
 
         if run:
@@ -445,7 +447,8 @@ class Day6:
 
 class Day7:
     """https://adventofcode.com/2018/day/7"""
-    def __init__(self, filename="2018_7.txt", run=False, team=5, task_time=60):
+    def __init__(self, filename="input/2018_7.txt", run=False,
+                 team=5, task_time=60):
         self.filename = filename
 
         if run:
@@ -543,10 +546,10 @@ class Day7:
         return time_taken
 
 if __name__ == "__main__":
-    Day1(run=False)
-    Day2(run=False)
-    Day3(run=False)
-    Day4(run=False)
-    Day5(run=False)
-    Day6(run=False)
-    Day7(run=False)
+    Day1(run=True)
+    Day2(run=True)
+    Day3(run=True)
+    Day4(run=True)
+    Day5(run=True)
+    Day6(run=True)
+    Day7(run=True)
