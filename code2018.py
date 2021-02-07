@@ -1,6 +1,8 @@
 """https://adventofcode.com/2018"""
+from argparse import ArgumentParser
 from time import time
 from numpy import matrix
+
 
 def find_n(string, n_times):
     """Check if exists N occurrences of a char within a string"""
@@ -9,23 +11,22 @@ def find_n(string, n_times):
             return 1
     return 0
 
+
 class Day1:
     """https://adventofcode.com/2018/day/1"""
-    def __init__(self, filename="input/2018_1.txt", run=False,
-                 starting_point=0):
+    def __init__(self, filename="input/2018_1.txt", starting_point=0):
         self.filename = filename
         self.starting_point = starting_point
 
-        if run:
-            self.time = time()
-            res = self.find_final_state()
-            print("CHALLENGE 2018.1.1: "+str(res))
+        self.time = time()
+        res = self.find_final_state()
+        print("CHALLENGE 2018.1.1: "+str(res))
 
-            res = self.find_repeated_state()
-            print("CHALLENGE 2018.1.2: "+str(res))
+        res = self.find_repeated_state()
+        print("CHALLENGE 2018.1.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     def find_final_state(self):
         """CHALLENGE 1.1 - 430"""
@@ -50,21 +51,21 @@ class Day1:
                     return result
                 state.append(result)
 
+
 class Day2:
     """https://adventofcode.com/2018/day/2"""
-    def __init__(self, filename="input/2018_2.txt", run=False):
+    def __init__(self, filename="input/2018_2.txt"):
         self.filename = filename
 
-        if run:
-            self.time = time()
-            res = self.find_checksum()
-            print("CHALLENGE 2018.2.1: "+str(res))
+        self.time = time()
+        res = self.find_checksum()
+        print("CHALLENGE 2018.2.1: "+str(res))
 
-            res = self.find_similars()
-            print("CHALLENGE 2018.2.2: "+str(res))
+        res = self.find_similars()
+        print("CHALLENGE 2018.2.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     def find_checksum(self):
         """CHALLENGE 2.1 - 8398"""
@@ -93,21 +94,21 @@ class Day2:
                         return sub_line.strip()
         return None
 
+
 class Day3:
     """https://adventofcode.com/2018/day/3"""
-    def __init__(self, filename="input/2018_3.txt", run=False, size=1000):
+    def __init__(self, filename="input/2018_3.txt", size=1000):
         self.filename = filename
         self.square = matrix([[0]*size]*size)
 
-        if run:
-            self.time = time()
-            res = self.find_repeated_squares()
-            print("CHALLENGE 2018.3.1: "+str(res))
-            res = self.find_no_overlap()
-            print("CHALLENGE 2018.3.2: "+str(res))
+        self.time = time()
+        res = self.find_repeated_squares()
+        print("CHALLENGE 2018.3.1: "+str(res))
+        res = self.find_no_overlap()
+        print("CHALLENGE 2018.3.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_elf_line(line):
@@ -156,20 +157,20 @@ class Day3:
                 return claim
         return None
 
+
 class Day4:
     """https://adventofcode.com/2018/day/4"""
-    def __init__(self, filename="input/2018_4.txt", run=False):
+    def __init__(self, filename="input/2018_4.txt"):
         self.filename = filename
 
-        if run:
-            self.time = time()
-            res = self.find_guard_opening()
-            print("CHALLENGE 2018.4.1: "+str(res))
-            res = self.find_minute_opening()
-            print("CHALLENGE 2018.4.2: "+str(res))
+        self.time = time()
+        res = self.find_guard_opening()
+        print("CHALLENGE 2018.4.1: "+str(res))
+        res = self.find_minute_opening()
+        print("CHALLENGE 2018.4.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_action(action):
@@ -272,21 +273,21 @@ class Day4:
 
         return result
 
+
 class Day5:
     """https://adventofcode.com/2018/day/5"""
-    def __init__(self, filename="input/2018_5.txt", run=False):
+    def __init__(self, filename="input/2018_5.txt"):
         self.filename = filename
 
-        if run:
-            self.time = time()
-            res = self.react_polymer()
-            print("CHALLENGE 2018.5.1: "+str(res))
+        self.time = time()
+        res = self.react_polymer()
+        print("CHALLENGE 2018.5.1: "+str(res))
 
-            res = self.shortest_polymer()
-            print("CHALLENGE 2018.5.2: "+str(res))
+        res = self.shortest_polymer()
+        print("CHALLENGE 2018.5.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def remove_pairs(polymer):
@@ -339,22 +340,21 @@ class Day5:
 
         return length
 
+
 class Day6:
     """https://adventofcode.com/2018/day/6"""
-    def __init__(self, filename="input/2018_6.txt", run=False,
-                 distance=10000):
+    def __init__(self, filename="input/2018_6.txt", distance=10000):
         self.filename = filename
 
-        if run:
-            self.time = time()
-            res = self.safest_area()
-            print("CHALLENGE 2018.6.1: "+str(res))
+        self.time = time()
+        res = self.safest_area()
+        print("CHALLENGE 2018.6.1: "+str(res))
 
-            res = self.closest_area(distance)
-            print("CHALLENGE 2018.6.2: "+str(res))
+        res = self.closest_area(distance)
+        print("CHALLENGE 2018.6.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_data(filename):
@@ -445,22 +445,21 @@ class Day6:
 
         return count
 
+
 class Day7:
     """https://adventofcode.com/2018/day/7"""
-    def __init__(self, filename="input/2018_7.txt", run=False,
-                 team=5, task_time=60):
+    def __init__(self, filename="input/2018_7.txt", team=5, task_time=60):
         self.filename = filename
 
-        if run:
-            self.time = time()
-            res = self.steps_ordered()
-            print("CHALLENGE 2018.7.1: "+str(res))
+        self.time = time()
+        res = self.steps_ordered()
+        print("CHALLENGE 2018.7.1: "+str(res))
 
-            res = self.steps_time(team, task_time)
-            print("CHALLENGE 2018.7.2: "+str(res))
+        res = self.steps_time(team, task_time)
+        print("CHALLENGE 2018.7.2: "+str(res))
 
-            time_taken = time()-self.time
-            print("TIME TAKEN %s sec" % time_taken)
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_data(filename):
@@ -545,11 +544,14 @@ class Day7:
 
         return time_taken
 
+
 if __name__ == "__main__":
-    Day1(run=True)
-    Day2(run=True)
-    Day3(run=True)
-    Day4(run=True)
-    Day5(run=True)
-    Day6(run=True)
-    Day7(run=True)
+    """python -m code2018 -d 1"""
+    parser = ArgumentParser()
+    parser.add_argument("--day", "-d", type=int, default=1)
+    args = parser.parse_args()
+
+    try:
+        eval("Day"+str(args.day))()
+    except NameError:
+        print("Day Not Implemented")

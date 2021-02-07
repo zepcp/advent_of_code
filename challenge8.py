@@ -76,6 +76,7 @@ class Day8:
         return self.parse_data(self.filename)
 
 if __name__ == "__main__":
+    pass
 #    Day8(run=True, filename='test.txt')
 #    Day8(run=True, filename='test2.txt')
 #    Day8(run=True, filename='test3.txt')
