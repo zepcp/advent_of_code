@@ -82,6 +82,50 @@ class Day2:
         return valid
 
 
+class Day3:
+    """https://adventofcode.com/2020/day/3"""
+    def __init__(self, filename="input/2020_3.txt"):
+        self.filename = filename
+
+        self.time = time()
+        res = self.count_slop(down=1, right=3)
+        print("CHALLENGE 2020.3.1: "+str(res))
+
+        res = self.check_slops()
+        print("CHALLENGE 2020.3.2: "+str(res))
+
+        time_taken = time()-self.time
+        print("TIME TAKEN %s sec" % time_taken)
+
+    def count_slop(self, down, right):
+        """CHALLENGE 3.1 - 200"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        position, trees, jump = right, 0, down
+        count_line = 1
+        for line in data[1:]:
+            if jump > 1:
+                jump -= 1
+                count_line += 1
+                continue
+            count_line += 1
+            if position >= len(line):
+                position -= len(line)
+            if line[position] == "#":
+                trees += 1
+            position += right
+            jump = down
+        return trees
+
+    def check_slops(self):
+        """CHALLENGE 3.2 - 3737923200"""
+        result = self.count_slop(down=1, right=1)
+        result *= self.count_slop(down=1, right=3)
+        result *= self.count_slop(down=1, right=5)
+        result *= self.count_slop(down=1, right=7)
+        result *= self.count_slop(down=2, right=1)
+        return result
+
+
 if __name__ == "__main__":
     """python -m code2020 -d 1"""
     parser = ArgumentParser()
