@@ -5,7 +5,7 @@ from time import time
 
 class Day1:
     """https://adventofcode.com/2020/day/1"""
-    def __init__(self, filename="input/2020_1.txt", result=2020):
+    def __init__(self, filename="input/2020/day_1.txt", result=2020):
         self.filename = filename
         self.result = result
 
@@ -40,7 +40,7 @@ class Day1:
 
 class Day2:
     """https://adventofcode.com/2020/day/2"""
-    def __init__(self, filename="input/2020_2.txt"):
+    def __init__(self, filename="input/2020/day_2.txt"):
         self.filename = filename
 
         self.time = time()
@@ -84,7 +84,7 @@ class Day2:
 
 class Day3:
     """https://adventofcode.com/2020/day/3"""
-    def __init__(self, filename="input/2020_3.txt"):
+    def __init__(self, filename="input/2020/day_3.txt"):
         self.filename = filename
 
         self.time = time()

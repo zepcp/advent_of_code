@@ -14,7 +14,7 @@ def find_n(string, n_times):
 
 class Day1:
     """https://adventofcode.com/2018/day/1"""
-    def __init__(self, filename="input/2018_1.txt", starting_point=0):
+    def __init__(self, filename="input/2018/day_1.txt", starting_point=0):
         self.filename = filename
         self.starting_point = starting_point
 
@@ -54,7 +54,7 @@ class Day1:
 
 class Day2:
     """https://adventofcode.com/2018/day/2"""
-    def __init__(self, filename="input/2018_2.txt"):
+    def __init__(self, filename="input/2018/day_2.txt"):
         self.filename = filename
 
         self.time = time()
@@ -97,7 +97,7 @@ class Day2:
 
 class Day3:
     """https://adventofcode.com/2018/day/3"""
-    def __init__(self, filename="input/2018_3.txt", size=1000):
+    def __init__(self, filename="input/2018/day_3.txt", size=1000):
         self.filename = filename
         self.square = matrix([[0]*size]*size)
 
@@ -160,7 +160,7 @@ class Day3:
 
 class Day4:
     """https://adventofcode.com/2018/day/4"""
-    def __init__(self, filename="input/2018_4.txt"):
+    def __init__(self, filename="input/2018/day_4.txt"):
         self.filename = filename
 
         self.time = time()
@@ -276,7 +276,7 @@ class Day4:
 
 class Day5:
     """https://adventofcode.com/2018/day/5"""
-    def __init__(self, filename="input/2018_5.txt"):
+    def __init__(self, filename="input/2018/day_5.txt"):
         self.filename = filename
 
         self.time = time()
@@ -343,7 +343,7 @@ class Day5:
 
 class Day6:
     """https://adventofcode.com/2018/day/6"""
-    def __init__(self, filename="input/2018_6.txt", distance=10000):
+    def __init__(self, filename="input/2018/day_6.txt", distance=10000):
         self.filename = filename
 
         self.time = time()
@@ -448,7 +448,7 @@ class Day6:
 
 class Day7:
     """https://adventofcode.com/2018/day/7"""
-    def __init__(self, filename="input/2018_7.txt", team=5, task_time=60):
+    def __init__(self, filename="input/2018/day_7.txt", team=5, task_time=60):
         self.filename = filename
 
         self.time = time()
