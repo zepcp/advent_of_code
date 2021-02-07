@@ -1,6 +1,7 @@
 """https://adventofcode.com/2020"""
 from argparse import ArgumentParser
 from time import time
+from re import match
 
 
 class Day1:
@@ -124,6 +125,9 @@ class Day4:
         res = self.valid_passports()
         print("CHALLENGE 2020.4.1: "+str(res))
 
+        res = self.valid_passports(check_content=True)
+        print("CHALLENGE 2020.4.2: "+str(res))
+
     @staticmethod
     def clean_data(line):
         data = {}
@@ -132,8 +136,38 @@ class Day4:
             data[key] = value
         return data
 
-    def valid_passports(self):
-        """CHALLENGE 4.1 - x"""
+    @staticmethod
+    def validate_key(key, value):
+        if key == "cid":
+            return True
+        elif key == "byr":
+            if 2002 >= int(value) >= 1920:
+                return True
+        elif key == "iyr":
+            if 2020 >= int(value) >= 2010:
+                return True
+        elif key == "eyr":
+            if 2030 >= int(value) >= 2020:
+                return True
+        elif key == "hgt":
+            if "cm" in value:
+                if 193 >= int(value.replace("cm", "")) >= 150:
+                    return True
+            if "in" in value:
+                if 76 >= int(value.replace("in", "")) >= 59:
+                    return True
+        elif key == "hcl":
+            return True if match(r"#[0-9a-f]{6}", value) else None
+        elif key == "ecl":
+            if value.strip() in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth"):
+                return True
+        elif key == "pid":
+            if len(value.strip()) == 9 and int(value.strip()):
+                return True
+
+    def valid_passports(self, check_content=False):
+        """CHALLENGE 4.1 - 204
+           CHALLENGE 4.2 - between 179"""
         data = [x.replace("\n","") for x in open(self.filename, "r")]
         data.append("")
         missing_fields = self.required_fields.copy()
@@ -144,7 +178,10 @@ class Day4:
                     valid += 1
                 missing_fields = self.required_fields.copy()
                 continue
-            for key in self.clean_data(x).keys():
+            key_pairs = self.clean_data(x)
+            for key in key_pairs.keys():
+                if check_content and not self.validate_key(key, key_pairs[key]):
+                    continue
                 try:
                     missing_fields.remove(key)
                 except ValueError:
