@@ -18,15 +18,11 @@ class Day1:
         self.filename = filename
         self.starting_point = starting_point
 
-        self.time = time()
         res = self.find_final_state()
         print("CHALLENGE 2018.1.1: "+str(res))
 
         res = self.find_repeated_state()
         print("CHALLENGE 2018.1.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     def find_final_state(self):
         """CHALLENGE 1.1 - 430"""
@@ -57,15 +53,11 @@ class Day2:
     def __init__(self, filename="input/2018/day_2.txt"):
         self.filename = filename
 
-        self.time = time()
         res = self.find_checksum()
         print("CHALLENGE 2018.2.1: "+str(res))
 
         res = self.find_similars()
         print("CHALLENGE 2018.2.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     def find_checksum(self):
         """CHALLENGE 2.1 - 8398"""
@@ -101,14 +93,10 @@ class Day3:
         self.filename = filename
         self.square = matrix([[0]*size]*size)
 
-        self.time = time()
         res = self.find_repeated_squares()
         print("CHALLENGE 2018.3.1: "+str(res))
         res = self.find_no_overlap()
         print("CHALLENGE 2018.3.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_elf_line(line):
@@ -163,14 +151,10 @@ class Day4:
     def __init__(self, filename="input/2018/day_4.txt"):
         self.filename = filename
 
-        self.time = time()
         res = self.find_guard_opening()
         print("CHALLENGE 2018.4.1: "+str(res))
         res = self.find_minute_opening()
         print("CHALLENGE 2018.4.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_action(action):
@@ -279,15 +263,11 @@ class Day5:
     def __init__(self, filename="input/2018/day_5.txt"):
         self.filename = filename
 
-        self.time = time()
         res = self.react_polymer()
         print("CHALLENGE 2018.5.1: "+str(res))
 
         res = self.shortest_polymer()
         print("CHALLENGE 2018.5.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def remove_pairs(polymer):
@@ -346,15 +326,11 @@ class Day6:
     def __init__(self, filename="input/2018/day_6.txt", distance=10000):
         self.filename = filename
 
-        self.time = time()
         res = self.safest_area()
         print("CHALLENGE 2018.6.1: "+str(res))
 
         res = self.closest_area(distance)
         print("CHALLENGE 2018.6.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_data(filename):
@@ -451,15 +427,11 @@ class Day7:
     def __init__(self, filename="input/2018/day_7.txt", team=5, task_time=60):
         self.filename = filename
 
-        self.time = time()
         res = self.steps_ordered()
         print("CHALLENGE 2018.7.1: "+str(res))
 
         res = self.steps_time(team, task_time)
         print("CHALLENGE 2018.7.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def parse_data(filename):
@@ -550,8 +522,12 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--day", "-d", type=int, default=1)
     args = parser.parse_args()
+    start_time = time()
 
     try:
         eval("Day"+str(args.day))()
     except NameError:
         print("Day Not Implemented")
+
+    time_taken = time() - start_time
+    print("TIME TAKEN %s sec" % time_taken)

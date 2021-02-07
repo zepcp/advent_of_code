@@ -9,15 +9,11 @@ class Day1:
         self.filename = filename
         self.result = result
 
-        self.time = time()
         res = self.iterate_file(units=2)
         print("CHALLENGE 2020.1.1: "+str(res))
 
         res = self.iterate_file(units=3)
         print("CHALLENGE 2020.1.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     def find_added(self, data, partial_sum, partial_prod, units):
         counter = 0
@@ -43,15 +39,11 @@ class Day2:
     def __init__(self, filename="input/2020/day_2.txt"):
         self.filename = filename
 
-        self.time = time()
         res = self.count_occurrences()
         print("CHALLENGE 2020.2.1: "+str(res))
 
         res = self.check_one_occurrence()
         print("CHALLENGE 2020.2.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     @staticmethod
     def clean_line(line):
@@ -87,15 +79,11 @@ class Day3:
     def __init__(self, filename="input/2020/day_3.txt"):
         self.filename = filename
 
-        self.time = time()
         res = self.count_slop(down=1, right=3)
         print("CHALLENGE 2020.3.1: "+str(res))
 
         res = self.check_slops()
         print("CHALLENGE 2020.3.2: "+str(res))
-
-        time_taken = time()-self.time
-        print("TIME TAKEN %s sec" % time_taken)
 
     def count_slop(self, down, right):
         """CHALLENGE 3.1 - 200"""
@@ -126,13 +114,55 @@ class Day3:
         return result
 
 
+class Day4:
+    """https://adventofcode.com/2020/day/4"""
+    def __init__(self, filename="input/2020/day_4.txt"):
+        self.filename = filename
+        self.required_fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
+        self.optional_fields = ["cid"]
+
+        res = self.valid_passports()
+        print("CHALLENGE 2020.4.1: "+str(res))
+
+    @staticmethod
+    def clean_data(line):
+        data = {}
+        for pair in line.split(" "):
+            key, value = pair.split(":")
+            data[key] = value
+        return data
+
+    def valid_passports(self):
+        """CHALLENGE 4.1 - x"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        data.append("")
+        missing_fields = self.required_fields.copy()
+        valid = 0
+        for x in data:
+            if x == "":
+                if not missing_fields:
+                    valid += 1
+                missing_fields = self.required_fields.copy()
+                continue
+            for key in self.clean_data(x).keys():
+                try:
+                    missing_fields.remove(key)
+                except ValueError:
+                    pass
+        return valid
+
+
 if __name__ == "__main__":
     """python -m code2020 -d 1"""
     parser = ArgumentParser()
     parser.add_argument("--day", "-d", type=int, default=1)
     args = parser.parse_args()
+    start_time = time()
 
     try:
         eval("Day"+str(args.day))()
     except NameError:
         print("Day Not Implemented")
+
+    time_taken = time() - start_time
+    print("TIME TAKEN %s sec" % time_taken)
