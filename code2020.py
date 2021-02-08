@@ -2,7 +2,7 @@
 from argparse import ArgumentParser
 from time import time
 from re import match
-from math import ceil, floor
+from math import ceil
 
 
 class Day1:
@@ -288,6 +288,32 @@ class Day6:
             answers = updated_answers
 
         return result
+
+
+class Day7:
+    """https://adventofcode.com/2020/day/7"""
+    def __init__(self, filename="input/2020/day_7.txt"):
+        self.filename = filename
+
+        res = len(self.count_bags(bag="shiny gold"))
+        print("CHALLENGE 2020.7.1: "+str(res))
+
+        res = self.day7_part2()
+        print("CHALLENGE 2020.7.2: "+str(res))
+
+    def count_bags(self, bag, bags=[]):
+        """CHALLENGE 7.1 - 378"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        for x in data:
+            if not x.startswith(bag) and bag in x:
+                if x.split("bags")[0].strip() not in bags:
+                    bags.append(x.split("bags")[0].strip())
+                bags = self.count_bags(x.split("bags")[0].strip(), bags)
+        return bags
+
+    def day7_part2(self):
+        """CHALLENGE 7.2 - x"""
+        return "None"
 
 
 if __name__ == "__main__":
