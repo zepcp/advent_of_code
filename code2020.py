@@ -240,6 +240,56 @@ class Day5:
                 return seat + 1
 
 
+class Day6:
+    """https://adventofcode.com/2020/day/6"""
+    def __init__(self, filename="input/2020/day_6.txt"):
+        self.filename = filename
+
+        res = self.sum_yes_anyone()
+        print("CHALLENGE 2020.6.1: "+str(res))
+
+        res = self.sum_yes_everyone()
+        print("CHALLENGE 2020.6.2: "+str(res))
+
+    def sum_yes_anyone(self):
+        """CHALLENGE 6.1 - 6249"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        data.append("")
+        result, answers = 0, []
+        for user in data:
+            if user == "":
+                result += len(set(answers))
+                answers = []
+                continue
+            [answers.append(x) for x in user]
+
+        return result
+
+    def sum_yes_everyone(self):
+        """CHALLENGE 6.2 - 3103"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        data.append("")
+        result, answers = 0, None
+        for user in data:
+            if user == "":
+                result += len(set(answers))
+                answers = None
+                continue
+
+            latest = [x for x in user]
+            if answers is None:
+                answers = latest
+                continue
+
+            updated_answers = []
+            for x in answers:
+                if x in latest:
+                    updated_answers.append(x)
+            answers = updated_answers
+
+        return result
+
+
 if __name__ == "__main__":
     """python -m code2020 -d 1"""
     parser = ArgumentParser()
