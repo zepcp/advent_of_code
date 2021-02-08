@@ -295,25 +295,35 @@ class Day7:
     def __init__(self, filename="input/2020/day_7.txt"):
         self.filename = filename
 
-        res = len(self.count_bags(bag="shiny gold"))
+        res = len(self.count_outer_bags(bag="shiny gold"))
         print("CHALLENGE 2020.7.1: "+str(res))
 
-        res = self.day7_part2()
+        res = self.count_inner_bags(bag="shiny gold")
         print("CHALLENGE 2020.7.2: "+str(res))
 
-    def count_bags(self, bag, bags=[]):
+    def count_outer_bags(self, bag, bags=[]):
         """CHALLENGE 7.1 - 378"""
         data = [x.replace("\n","") for x in open(self.filename, "r")]
         for x in data:
             if not x.startswith(bag) and bag in x:
                 if x.split("bags")[0].strip() not in bags:
                     bags.append(x.split("bags")[0].strip())
-                bags = self.count_bags(x.split("bags")[0].strip(), bags)
+                bags = self.count_outer_bags(x.split("bags")[0].strip(), bags)
         return bags
 
-    def day7_part2(self):
-        """CHALLENGE 7.2 - x"""
-        return "None"
+    def count_inner_bags(self, bag, outer_count=1, total=0):
+        """CHALLENGE 7.2 - 27526"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        for x in data:
+            if x.startswith(bag):
+                content = x.split("contain")[1]
+                for each in content.split(","):
+                    each = each.replace("bags", "").replace("bag", "").replace(".", "").strip()
+                    inner_count, inner_bag = each.split(" ")[0].strip(), " ".join(each.split(" ")[1:]).strip()
+                    if not inner_count in ("no", "0"):
+                        added = int(inner_count) * outer_count
+                        total += self.count_inner_bags(inner_bag, added, added)
+        return total
 
 
 if __name__ == "__main__":
