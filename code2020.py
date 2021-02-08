@@ -2,6 +2,7 @@
 from argparse import ArgumentParser
 from time import time
 from re import match
+from math import ceil, floor
 
 
 class Day1:
@@ -167,7 +168,7 @@ class Day4:
 
     def valid_passports(self, check_content=False):
         """CHALLENGE 4.1 - 204
-           CHALLENGE 4.2 - between 179"""
+           CHALLENGE 4.2 - 179"""
         data = [x.replace("\n","") for x in open(self.filename, "r")]
         data.append("")
         missing_fields = self.required_fields.copy()
@@ -187,6 +188,56 @@ class Day4:
                 except ValueError:
                     pass
         return valid
+
+
+class Day5:
+    """https://adventofcode.com/2020/day/5"""
+    def __init__(self, filename="input/2020/day_5.txt"):
+        self.filename = filename
+        self.rows = 127
+        self.columns = 7
+
+        res = self.highest_seat()
+        print("CHALLENGE 2020.5.1: "+str(res))
+
+        res = self.check_seat()
+        print("CHALLENGE 2020.5.2: "+str(res))
+
+    def compute_seat(self, seat):
+        row, column = [0, self.rows], [0, self.columns]
+        for x in seat:
+            if x == "F":
+                row[1] -= ceil((row[1] - row[0]) / 2)
+            elif x == "B":
+                row[0] += ceil((row[1] - row[0]) / 2)
+            elif x == "L":
+                column[1] -= ceil((column[1] - column[0]) / 2)
+            elif x == "R":
+                column[0] += ceil((column[1] - column[0]) / 2)
+        return row[0] * 8 + column[0]
+
+    def highest_seat(self):
+        """CHALLENGE 5.1 - 848"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        highest = data[0]
+        for seat in data[1:]:
+            for pos, label in enumerate(seat):
+                if label == highest[pos]:
+                    continue
+                if label in ("B", "R"):
+                    highest = seat
+                break
+        return self.compute_seat(highest)
+
+    def check_seat(self):
+        """CHALLENGE 5.2 - > 342 ??"""
+        data = [x.replace("\n","") for x in open(self.filename, "r")]
+        all_seats = [self.compute_seat(seat) for seat in data[1:]]
+        all_seats.sort()
+
+        for pos, seat in enumerate(all_seats):
+            if seat + 1 != all_seats[pos + 1]:
+                return seat + 1
 
 
 if __name__ == "__main__":
