@@ -230,9 +230,9 @@ class Day5:
         return self.compute_seat(highest)
 
     def check_seat(self):
-        """CHALLENGE 5.2 - > 342 ??"""
+        """CHALLENGE 5.2 - 682"""
         data = [x.replace("\n","") for x in open(self.filename, "r")]
-        all_seats = [self.compute_seat(seat) for seat in data[1:]]
+        all_seats = [self.compute_seat(seat) for seat in data]
         all_seats.sort()
 
         for pos, seat in enumerate(all_seats):
